@@ -124,12 +124,14 @@ jobs:
         run: heroku container:release web
 
   smoke_tests:
-  
+    name: smoke_tests
     runs-on: ubuntu-latest
-    steps:
+    needs: [deploy_to_heroku]
+
     env:
       ENLACE: http://${{ secrets.HEROKU_APP }}.herokuapp.com
 
+    steps:
       - name: Checkout commit
         uses: actions/checkout@v2
         with: 
