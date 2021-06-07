@@ -1,9 +1,9 @@
-name: workflow_1
+name: workflow_2
 
 on: 
-  pull_request:
+  push:
     branches:
-      - feature/*
+      - develop
 
 jobs:
   build:
@@ -24,3 +24,6 @@ jobs:
     
       - name: Tests Selenium
         run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.rest.RestTest' test 
+
+      - name: Tests Selenium
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.selenium.SeleniumTest' test 
