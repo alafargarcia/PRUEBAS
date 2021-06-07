@@ -29,6 +29,7 @@ public class SeleniumTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    private String enlace;
 
 	@BeforeAll
 	public static void setupClass() {
@@ -41,6 +42,7 @@ public class SeleniumTest {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(driver, 10);
+        enlace = System.getProperty("host", "http://localhost:" + this.port + "/");
 	}
 
 	@AfterEach
@@ -55,7 +57,7 @@ public class SeleniumTest {
 	public void createBookTest() throws Exception {
 
         // GIVEN: Partiendo de que estamos en la página principal de la libreria
-        this.driver.get("http://localhost:"+this.port+"/");
+        this.driver.get(enlace);
 
         // WHEN: Creamos un nuevo libro
 
@@ -75,7 +77,7 @@ public class SeleniumTest {
 	public void deleteBookTest() throws Exception {
 
         // GIVEN: Partiendo de que estamos en la página principal de la libreria
-        this.driver.get("http://localhost:"+this.port+"/");
+        this.driver.get(enlace);
 
         // WHEN: 
         

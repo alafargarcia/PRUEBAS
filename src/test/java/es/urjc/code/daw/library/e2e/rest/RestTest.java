@@ -20,13 +20,18 @@ import io.restassured.http.ContentType;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("REST tests")
 public class RestTest {
+    
+    private String enlace;
 
     @LocalServerPort
     int port;
 
     @BeforeEach
     public void setUp() {
-        RestAssured.port = port;
+        enlace = enlace = System.getProperty("host", "http://localhost:" + this.port);
+        if (enlace.equals("http://localhost:" + this.port)){
+            RestAssured.port = port;
+        } 
     }
 
     @Autowired
@@ -46,7 +51,7 @@ public class RestTest {
                     .body(objectMapper.writeValueAsString(book))
                     .contentType(ContentType.JSON).
             when()
-                .post("/api/books/").
+                .post(enlace + "/api/books/").
             then()
                 .assertThat()
                 .statusCode(201)
@@ -56,7 +61,7 @@ public class RestTest {
         // COMPROBAMOS QUE EL LIBRO SE HA CREADO CORRECTAMENTE
 
         when()
-            .get("/api/books/{id}", createdBook.getId())
+            .get(enlace + "/api/books/{id}", createdBook.getId())
         .then()
              .assertThat()
              .statusCode(200)
@@ -79,7 +84,7 @@ public class RestTest {
                     .body(objectMapper.writeValueAsString(book))
                     .contentType(ContentType.JSON)
             .when()
-                .post("/api/books/")
+                .post(enlace + "/api/books/")
             .then()
                 .assertThat()
                 .statusCode(201)
@@ -88,7 +93,7 @@ public class RestTest {
         
         // BORRAMOS EL LIBRO CREADO
         when()
-             .delete("/api/books/{id}",createdBook.getId())
+             .delete(enlace + "/api/books/{id}",createdBook.getId())
         .then()
              .assertThat()
                 .statusCode(200);
@@ -96,7 +101,7 @@ public class RestTest {
         // COMPROBAMOS QUE EL LIBRO YA NO EXISTE
 
         when()
-             .get("/api/books/{id}", createdBook.getId())
+             .get(enlace + "/api/books/{id}", createdBook.getId())
         .then()
              .assertThat()
                 .statusCode(404);
