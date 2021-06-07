@@ -1,3 +1,3 @@
 FROM openjdk:11-jre
-COPY *.jar /opt/webapp.jar
+COPY target/*.jar /opt/webapp.jar
 CMD ["java", "-jar", "/opt/webapp.jar" ]
