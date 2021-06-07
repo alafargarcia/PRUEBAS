@@ -36,7 +36,9 @@ public class SeleniumTest {
 
 	@BeforeEach
 	public void setupTest() {
-        this.driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(driver, 10);
 	}
 
