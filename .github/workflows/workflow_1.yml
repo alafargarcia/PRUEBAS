@@ -3,7 +3,7 @@ name: workflow_1
 on: 
   pull_request:
     branches:
-      - feature/*
+      [feature/*]
 
 jobs:
   build:
