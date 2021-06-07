@@ -28,8 +28,8 @@ public class RestTest {
 
     @BeforeEach
     public void setUp() {
-        enlace = System.getProperty("host", "http://localhost:" + this.port);
-        if (enlace.equals("http://localhost:" + this.port)){
+        enlace = System.getProperty("host", "http://localhost:" + this.port + "/");
+        if (enlace.equals("http://localhost:" + this.port + "/")){
             RestAssured.port = port;
         } 
     }

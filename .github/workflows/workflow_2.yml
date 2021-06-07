@@ -19,10 +19,10 @@ jobs:
           java-version: 11
         
       - name: Tests Unitarios
-        run: mvn -B '-Dtest=es.urjc.code.daw.library.unitary.BookServiceUnitaryTest' test 
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.unitary.*Test' test 
     
       - name: Tests Selenium
-        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.rest.RestTest' test 
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.rest.*Test' test 
 
       - name: Tests Selenium
-        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.selenium.SeleniumTest' test 
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.selenium.*Test' test 
