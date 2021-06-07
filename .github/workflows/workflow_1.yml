@@ -2,8 +2,7 @@ name: workflow_1
 
 on: 
   pull_request:
-    branches:
-      [feature/*]
+    branches: [feature/*]
 
 jobs:
   build:
