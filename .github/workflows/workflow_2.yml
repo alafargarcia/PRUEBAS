@@ -2,7 +2,7 @@ name: workflow_2
 
 on: 
   push:
-    branches: [develop]
+    branches: [master]
 
 jobs:
   build:
