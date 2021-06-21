@@ -2,7 +2,7 @@ name: workflow_4
 
 on: 
   push:
-    branches: [release/**]
+    branches: [master]
 
 jobs:
   build:
